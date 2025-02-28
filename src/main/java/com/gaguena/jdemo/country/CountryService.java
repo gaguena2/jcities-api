@@ -16,12 +16,12 @@ public class CountryService {
        return this.countryRepository.findByCode(code);
     }
 
-    public Country create(Country state) {
-       return this.countryRepository.save(state);
+    public Country create(CountryData country) {
+       return this.countryRepository.save(country.toCountry());
     }
 
     public List<Country> saveAll(List<CountryData> datas) {
-        var sates = datas.stream().map(CountryData::toCountry).toList();
-        return sates.stream().map(this.countryRepository::save).toList();
+        var countries = datas.stream().map(CountryData::toCountry).toList();
+        return countries.stream().map(this.countryRepository::save).toList();
     }
 }
