@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CityService {
+public class CityService{
 
     @Autowired
     private CityRepository cityRepository;
     
     public Optional<City> getBy(Long code) {
-       return this.cityRepository.findByCode(code);
+       var cities = this.cityRepository.findByCode(code);
+       return cities;
     }
 
     public City create(CityData state) {
@@ -24,4 +25,9 @@ public class CityService {
         var cities = datas.stream().map(CityData::toCity).toList();
         return cities.stream().map(this.cityRepository::save).toList();
     }
+
+    public List<City> getBy(String uf) {
+        return this.cityRepository.findByUf(uf);
+    }
+    
 }

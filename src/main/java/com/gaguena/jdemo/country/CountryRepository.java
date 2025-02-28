@@ -10,4 +10,6 @@ public interface CountryRepository extends MongoRepository<Country, String> {
 
     Optional<Country> findByCode(Long code);
 
+    Optional<Country> findByUf(String uf);
+
 }
